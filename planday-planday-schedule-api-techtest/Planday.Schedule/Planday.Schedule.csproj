@@ -6,8 +6,6 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="obj\Debug\net9.0\" />
-    </ItemGroup>
+   
 
 </Project>
