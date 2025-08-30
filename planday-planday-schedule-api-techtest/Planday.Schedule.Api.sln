@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planday.Schedule", "Planday
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planday.Schedule.Infrastructure", "Planday.Schedule.Infrastructure\Planday.Schedule.Infrastructure.csproj", "{55B3AB9E-33D3-4404-BC61-0DD805A8169F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planday.UnitTesting", "Planday.UnitTesting\Planday.UnitTesting.csproj", "{D0460638-47F3-4CB4-956A-EEE8DA254599}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{55B3AB9E-33D3-4404-BC61-0DD805A8169F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55B3AB9E-33D3-4404-BC61-0DD805A8169F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55B3AB9E-33D3-4404-BC61-0DD805A8169F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0460638-47F3-4CB4-956A-EEE8DA254599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0460638-47F3-4CB4-956A-EEE8DA254599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0460638-47F3-4CB4-956A-EEE8DA254599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0460638-47F3-4CB4-956A-EEE8DA254599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
