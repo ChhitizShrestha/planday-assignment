@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Planday.Schedule
+﻿namespace Planday.Schedule
 {
     public class Shift
     {
@@ -16,6 +14,15 @@ namespace Planday.Schedule
         public long? EmployeeId { get; }
         public DateTime Start { get; }
         public DateTime End { get; }
-    }    
-}
 
+        public bool IsAssignedToEmployee => EmployeeId.HasValue;
+        public bool IsOpenShift => !IsAssignedToEmployee;
+
+        public bool IsOnSameDay => Start.Date == End.Date;
+
+        public bool OverlapsWith(DateTime start, DateTime end)
+        {
+            return Start < end && End > start;
+        }
+    }
+}

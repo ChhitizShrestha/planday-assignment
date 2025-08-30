@@ -1,28 +1,38 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Planday.Schedule.Infrastructure.Providers;
-using Planday.Schedule.Infrastructure.Providers.Interfaces;
-using Planday.Schedule.Infrastructure.Queries;
-using Planday.Schedule.Queries;
+using Planday.Schedule.Api.Extensions;
+using Planday.Schedule.Api.Middleware;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+try
+{
+    builder.Host.ConfigureLogging();
 
-builder.Services.AddSingleton<IConnectionStringProvider>(new ConnectionStringProvider(builder.Configuration.GetConnectionString("Database")));
-builder.Services.AddScoped<IGetAllShiftsQuery, GetAllShiftsQuery>();
+    builder.Services.ConfigureServices(builder.Configuration);
 
-var app = builder.Build();
+    var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-app.UseSwagger();
-app.UseSwaggerUI();
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-app.Run();
+    app.UseSerilogRequestLogging();
+    app.UseMiddleware<ErrorHandlingMiddleware>();
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+    throw;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
