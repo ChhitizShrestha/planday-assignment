@@ -1,6 +1,7 @@
 using FluentValidation;
 using Microsoft.Extensions.Options;
 using Planday.Schedule.Api.Configuration;
+using Planday.Schedule.Api.Middleware;
 using Planday.Schedule.Api.Services;
 using Planday.Schedule.Infrastructure.Providers;
 using Planday.Schedule.Infrastructure.Providers.Interfaces;
@@ -21,7 +22,8 @@ public static class ServiceCollectionExtensions
         services.Configure<EmployeeApiOptions>(configuration.GetSection(EmployeeApiOptions.SectionName));
         services.Configure<HttpClientPolicyOptions>(configuration.GetSection("HttpClientPolicy"));
         services.Configure<SerilogOptions>(configuration.GetSection(SerilogOptions.SectionName));
-
+        services.AddExceptionHandler<ApiExceptionHandler>();
+        services.AddProblemDetails();
         return services;
     }
 

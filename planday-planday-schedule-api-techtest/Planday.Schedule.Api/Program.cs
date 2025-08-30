@@ -1,5 +1,4 @@
 using Planday.Schedule.Api.Extensions;
-using Planday.Schedule.Api.Middleware;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +18,7 @@ try
     }
 
     app.UseSerilogRequestLogging();
-    app.UseMiddleware<ErrorHandlingMiddleware>();
+    app.UseExceptionHandler();
     app.UseHttpsRedirection();
     app.UseAuthorization();
     app.MapControllers();
